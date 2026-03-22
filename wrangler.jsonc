@@ -8,7 +8,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "homepage",
+	"name": "actrivo-homepage",
 	"main": ".open-next/worker.js",
 	"compatibility_date": "2026-03-17",
 	"compatibility_flags": [
