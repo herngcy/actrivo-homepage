@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { PageWrapper } from "@/components/PageWrapper";
-import { ButtonBorder } from "@/components/ui/button-border";
+import { FinalCTA } from "@/components/FinalCTA";
 import { Clock, Calendar } from "lucide-react";
 import { notFound } from "next/navigation";
 import DOMPurify from "dompurify";
@@ -85,34 +85,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       </article>
 
-      {/* CTA Section */}
-      <section
-        className="py-16 px-6 md:py-24"
-        style={{ backgroundColor: "#fafafa", borderTop: "1px solid #e5e5e5" }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 60, damping: 18 }}
-          >
-            <h2
-              className="font-display text-3xl md:text-4xl font-extrabold mb-6"
-              style={{ color: "#000000", letterSpacing: "-0.02em" }}
-            >
-              Ready to Automate Your Workflows?
-            </h2>
-            <p
-              className="text-lg mb-8 max-w-2xl mx-auto"
-              style={{ color: "#737373", lineHeight: "1.7" }}
-            >
-              Book a free 30-minute workflow audit and we&apos;ll show you exactly where automation can save your team the most time.
-            </p>
-            <ButtonBorder href="/contact">Book My Free Audit →</ButtonBorder>
-          </motion.div>
-        </div>
-      </section>
+      <FinalCTA />
     </PageWrapper>
   );
 }

@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { PageWrapper } from "@/components/PageWrapper";
 import { ProjectCard, Project } from "@/components/ProjectCard";
 import { ToolsGrid } from "@/components/ToolsGrid";
-import { ButtonBorder } from "@/components/ui/button-border";
+import { FinalCTA } from "@/components/FinalCTA";
 
 const projects: Project[] = [
   {
@@ -169,34 +169,7 @@ export default function WorkPage() {
         subtitle="We integrate with the platforms your team already uses — no switching required."
       />
 
-      {/* Final CTA */}
-      <section
-        className="py-16 px-6 md:py-24"
-        style={{ backgroundColor: "#000000" }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 60, damping: 18 }}
-          >
-            <h2
-              className="font-display text-3xl md:text-4xl font-extrabold mb-6"
-              style={{ color: "#ffffff", letterSpacing: "-0.02em" }}
-            >
-              Want to See What We'd Build for You?
-            </h2>
-            <p
-              className="text-lg mb-8 max-w-2xl mx-auto"
-              style={{ color: "rgba(255,255,255,0.7)", lineHeight: "1.7" }}
-            >
-              Book a free 30-minute workflow audit — we'll map your manual processes and show you exactly what's possible.
-            </p>
-            <ButtonBorder href="/contact">Book My Free Audit →</ButtonBorder>
-          </motion.div>
-        </div>
-      </section>
+      <FinalCTA />
     </PageWrapper>
   );
 }

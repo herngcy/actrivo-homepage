@@ -8,7 +8,7 @@ import { ServiceBentoGrid } from "./ServiceBentoGrid";
 import { ServiceMethodology } from "./ServiceMethodology";
 import { ServiceImpact } from "./ServiceImpact";
 import { ServiceWhyItMatters } from "./ServiceWhyItMatters";
-import { ServiceCTA } from "./ServiceCTA";
+import { FinalCTA } from "@/components/FinalCTA";
 
 export function ServicePageTemplate({ data }: { data: ServiceData }) {
   return (
@@ -32,11 +32,7 @@ export function ServicePageTemplate({ data }: { data: ServiceData }) {
       <ServiceMethodology steps={data.steps} />
       <ServiceImpact stats={data.stats} />
       <ServiceWhyItMatters cards={data.whyCards} />
-      <ServiceCTA
-        headline={data.ctaHeadline}
-        subtitle={data.ctaSubtitle}
-        buttonText={data.ctaButtonText}
-      />
+      <FinalCTA />
     </PageWrapper>
   );
 }

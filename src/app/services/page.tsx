@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PageWrapper } from "@/components/PageWrapper";
 import { ArrowRight, Search } from "lucide-react";
+import { FinalCTA } from "@/components/FinalCTA";
 
 /* ── Service card data ── */
 const categories = [
@@ -603,37 +604,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── BOTTOM CTA (mobile only duplicate) ── */}
-      <section
-        className="md:hidden py-12 px-6"
-        style={{ backgroundColor: "#fafafa" }}
-      >
-        <div
-          className="p-6 rounded-2xl text-center"
-          style={{
-            backgroundColor: "rgba(252,163,17,0.06)",
-            border: "1px solid rgba(252,163,17,0.15)",
-          }}
-        >
-          <h4
-            className="text-lg font-bold mb-2"
-            style={{ color: "#0a0a0a" }}
-          >
-            Need a custom solution?
-          </h4>
-          <p className="text-sm mb-4" style={{ color: "#737373" }}>
-            Talk to our team to design a tailored automation strategy.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold"
-            style={{ backgroundColor: "#fca311", color: "#000" }}
-          >
-            Schedule a consultation
-            <ArrowRight size={14} />
-          </Link>
-        </div>
-      </section>
+      <FinalCTA />
     </PageWrapper>
   );
 }

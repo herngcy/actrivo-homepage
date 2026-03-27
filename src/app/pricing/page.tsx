@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { PageWrapper } from "@/components/PageWrapper";
 import { PricingCard, PricingTier } from "@/components/PricingCard";
-import { ButtonBorder } from "@/components/ui/button-border";
+import { FinalCTA } from "@/components/FinalCTA";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -226,34 +226,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section
-        className="py-16 px-6 md:py-24"
-        style={{ backgroundColor: "#000000" }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 60, damping: 18 }}
-          >
-            <h2
-              className="font-display text-3xl md:text-4xl font-extrabold mb-6"
-              style={{ color: "#ffffff", letterSpacing: "-0.02em" }}
-            >
-              Not sure which plan fits?
-            </h2>
-            <p
-              className="text-lg mb-8 max-w-2xl mx-auto"
-              style={{ color: "rgba(255,255,255,0.7)", lineHeight: "1.7" }}
-            >
-              Start with a free audit. We'll scope the right solution for your team and give you a clear proposal.
-            </p>
-            <ButtonBorder href="/contact">Book My Free Audit →</ButtonBorder>
-          </motion.div>
-        </div>
-      </section>
+      <FinalCTA />
     </PageWrapper>
   );
 }

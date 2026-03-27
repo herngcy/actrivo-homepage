@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { PageWrapper } from "@/components/PageWrapper";
 import { BlogCard } from "@/components/BlogCard";
 import { blogPosts } from "@/lib/blog-data";
+import { FinalCTA } from "@/components/FinalCTA";
 
 const categories = ["All", "AI Automation", "WhatsApp Automation", "Case Studies", "Industry Trends"];
 
@@ -145,6 +146,7 @@ export default function BlogPage() {
           )}
         </div>
       </section>
+      <FinalCTA />
     </PageWrapper>
   );
 }
