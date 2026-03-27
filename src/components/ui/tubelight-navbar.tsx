@@ -180,7 +180,7 @@ export function NavBar({
                   <div className="space-y-1">
                     {menuItems.map((item, i) => (
                       <motion.div
-                        key={item.url}
+                        key={item.name}
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
