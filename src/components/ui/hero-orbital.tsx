@@ -140,11 +140,17 @@ export function OrbitalHero() {
     return () => cancelAnimationFrame(rafIdRef.current);
   }, [isMobile, reducedMotion]);
 
-  // Get orbit radius based on viewport
-  const orbitRadius = useMemo(() => {
-    if (typeof window === "undefined") return DESKTOP_RADIUS;
-    return window.innerWidth >= 1024 ? DESKTOP_RADIUS : TABLET_RADIUS;
-  }, [mounted]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Get orbit radius based on viewport (use state to avoid SSR mismatch)
+  const [orbitRadius, setOrbitRadius] = useState(DESKTOP_RADIUS);
+
+  useEffect(() => {
+    const updateRadius = () => {
+      setOrbitRadius(window.innerWidth >= 1024 ? DESKTOP_RADIUS : TABLET_RADIUS);
+    };
+    updateRadius();
+    window.addEventListener("resize", updateRadius);
+    return () => window.removeEventListener("resize", updateRadius);
+  }, []);
 
   // Handle icon click — snap clicked icon to top of orbit
   const handleIconClick = useCallback(
@@ -266,7 +272,7 @@ export function OrbitalHero() {
             const isActive = activeIconId === icon.id;
             const hasActiveIcon = activeIconId !== null;
             const co = orbitRadius + 50;
-            const halfSize = typeof window !== "undefined" && window.innerWidth >= 1024 ? 40 : typeof window !== "undefined" && window.innerWidth >= 768 ? 36 : 28;
+            const halfSize = orbitRadius === DESKTOP_RADIUS ? 40 : 36;
 
             // When active: highlight at orbital position (now snapped to top)
             const finalOpacity = isActive ? 1 : hasActiveIcon ? 0.2 : t.opacity;

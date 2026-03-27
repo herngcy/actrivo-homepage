@@ -293,6 +293,10 @@ export function Footer() {
           <p className="text-xs" style={{ color: "#404040" }}>
             &copy; {year} Actrivo. All rights reserved.
           </p>
+          <div className="flex items-center gap-4">
+            <FooterLink href="/privacy-policy">Privacy Policy</FooterLink>
+            <FooterLink href="/terms-of-service">Terms of Service</FooterLink>
+          </div>
           <p className="text-xs" style={{ color: "#333333" }}>
             Automating Malaysian SMEs, One Workflow at a Time.
           </p>

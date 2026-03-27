@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLenis } from "@/components/SmoothScrollProvider";
@@ -36,6 +37,7 @@ export function NavBar({
   const [hoveredItem, setHoveredItem] = useState("Services");
   const lastScrollY = useRef(0);
   const lenis = useLenis();
+  const pathname = usePathname();
 
   const menuImages: Record<string, { src: string; label: string; subtitle: string }> = {
     "Services": { src: "/images/glass-wall-workflow.png", label: "Our Services", subtitle: "AI-powered automation solutions" },
@@ -99,6 +101,16 @@ export function NavBar({
           {/* Left: Logo + Wordmark */}
           <Link
             href="/"
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault();
+                if (lenis) {
+                  lenis.scrollTo(0, { duration: 1.2 });
+                } else {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }
+            }}
             className="flex items-center gap-2.5 flex-shrink-0 relative z-[60]"
           >
             {logoSrc && (
