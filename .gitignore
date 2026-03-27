@@ -50,3 +50,6 @@ next-env.d.ts
 
 
 !.dev.vars.example
+
+# Local reference materials (brand assets, design refs, docs)
+_reference/
