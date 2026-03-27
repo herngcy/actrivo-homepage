@@ -144,8 +144,8 @@
 
 .orbital-popup {
   position: absolute;
-  width: 280px;
-  padding: 20px;
+  width: 400px;
+  padding: 28px 32px;
   border-radius: 16px;
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(12px);
@@ -175,28 +175,28 @@
 }
 
 .orbital-popup-header img {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 }
 
 .orbital-popup-title {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 20px;
   color: #ffffff;
   letter-spacing: -0.01em;
 }
 
 .orbital-popup-body {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.7;
   color: #a3a3a3;
   margin: 0;
 }
 
 .orbital-popup-link {
   display: inline-block;
-  margin-top: 12px;
-  font-size: 13px;
+  margin-top: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--accent);
   text-decoration: none;
@@ -205,6 +205,18 @@
 
 .orbital-popup-link:hover {
   opacity: 0.8;
+}
+
+/* ── Centered popup (desktop) ── */
+
+.orbital-popup--centered {
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  max-width: 400px;
+  z-index: 20;
+  pointer-events: auto;
 }
 
 /* ── Click-Away Overlay ── */

@@ -223,6 +223,7 @@ export function OrbitalHero() {
           style={{
             width: orbitRadius * 2 + 100,
             height: orbitRadius * 2 + 100,
+            zIndex: activeIconId ? 25 : 5,
           }}
         >
           {/* Orbit Ring */}
@@ -316,40 +317,39 @@ export function OrbitalHero() {
             );
           })}
 
-          {/* Popup Card — centered below active icon */}
-          <AnimatePresence mode="wait">
-            {activeIcon && (
-              <motion.div
-                key={activeIcon.id}
-                className="orbital-popup"
-                style={{
-                  left: orbitRadius + 50 - 140,
-                  top: orbitRadius + 50 + 20,
-                }}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 16 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-              >
-                <div
-                  className="orbital-popup-accent"
-                  style={{ backgroundColor: activeIcon.accentColor }}
-                />
-                <div className="orbital-popup-header">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={activeIcon.src} alt="" />
-                  <span className="orbital-popup-title font-display">
-                    {activeIcon.popupTitle}
-                  </span>
-                </div>
-                <p className="orbital-popup-body">{activeIcon.popupBody}</p>
-                <a href={activeIcon.serviceLink} className="orbital-popup-link">
-                  Learn more &rarr;
-                </a>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
+      )}
+
+      {/* Desktop Centered Popup */}
+      {!isMobile && (
+        <AnimatePresence mode="wait">
+          {activeIcon && (
+            <motion.div
+              key={activeIcon.id}
+              className="orbital-popup orbital-popup--centered"
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 20 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            >
+              <div
+                className="orbital-popup-accent"
+                style={{ backgroundColor: activeIcon.accentColor }}
+              />
+              <div className="orbital-popup-header">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={activeIcon.src} alt="" />
+                <span className="orbital-popup-title font-display">
+                  {activeIcon.popupTitle}
+                </span>
+              </div>
+              <p className="orbital-popup-body">{activeIcon.popupBody}</p>
+              <a href={activeIcon.serviceLink} className="orbital-popup-link">
+                Learn more &rarr;
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
       )}
 
       {/* Mobile Layout */}

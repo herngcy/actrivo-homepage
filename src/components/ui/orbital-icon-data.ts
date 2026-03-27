@@ -15,7 +15,7 @@ export const ORBITAL_ICONS: OrbitalIcon[] = [
     label: "WhatsApp",
     popupTitle: "WhatsApp Automation",
     popupBody:
-      "Auto-reply to customers, process orders, and broadcast promos — through the chat app your customers already use daily.",
+      "Instant auto-replies to enquiries, automated order confirmations, and scheduled promo broadcasts — all through WhatsApp Business API. Customers get responses in seconds, not hours.",
     accentColor: "#25D366",
     serviceLink: "/services/whatsapp-business-automation",
   },
@@ -25,7 +25,7 @@ export const ORBITAL_ICONS: OrbitalIcon[] = [
     label: "Excel",
     popupTitle: "Spreadsheet Sync",
     popupBody:
-      "We connect your spreadsheets to CRMs, invoicing, and inventory tools. Data flows automatically — no more copy-paste errors.",
+      "Two-way sync between Excel/Google Sheets and your CRM, invoicing, or inventory system. New rows trigger workflows, formulas stay intact, and copy-paste errors disappear overnight.",
     accentColor: "#217346",
     serviceLink: "/services/data-entry-automation",
   },
@@ -35,7 +35,7 @@ export const ORBITAL_ICONS: OrbitalIcon[] = [
     label: "Gmail",
     popupTitle: "Email Automation",
     popupBody:
-      "Smart segmentation, triggered campaigns, and auto-follow-ups that nurture leads while you sleep.",
+      "Behaviour-based segmentation, drip campaigns triggered by sign-ups or purchases, and timed follow-ups that re-engage cold leads — all running on autopilot inside Gmail.",
     accentColor: "#EA4335",
     serviceLink: "/services/email-marketing",
   },
@@ -45,7 +45,7 @@ export const ORBITAL_ICONS: OrbitalIcon[] = [
     label: "Google Drive",
     popupTitle: "Document Workflows",
     popupBody:
-      "Extract data from uploaded PDFs, route files to the right folders, and trigger actions when documents arrive.",
+      "AI reads incoming PDFs, invoices, and forms — extracts key fields, sorts files into the right Drive folders, and kicks off approval or data-entry workflows automatically.",
     accentColor: "#4285F4",
     serviceLink: "/services/ai-document-processing",
   },
@@ -55,7 +55,7 @@ export const ORBITAL_ICONS: OrbitalIcon[] = [
     label: "Power BI",
     popupTitle: "Live Dashboards",
     popupBody:
-      "Replace manual weekly reports with real-time dashboards that pull from all your data sources automatically.",
+      "Real-time Power BI dashboards fed by your sales, inventory, and finance data. No more compiling weekly reports — KPIs update themselves and alert you when numbers drift.",
     accentColor: "#F2C811",
     serviceLink: "/services/reporting-dashboards",
   },
@@ -65,7 +65,7 @@ export const ORBITAL_ICONS: OrbitalIcon[] = [
     label: "PostgreSQL",
     popupTitle: "Database Automation",
     popupBody:
-      "Your business data synced, validated, and updated across systems without manual intervention.",
+      "Automated data validation, deduplication, and cross-system sync between your database and business tools. Records stay clean and consistent without anyone touching a query.",
     accentColor: "#336791",
     serviceLink: "/services/data-entry-automation",
   },
@@ -75,7 +75,7 @@ export const ORBITAL_ICONS: OrbitalIcon[] = [
     label: "SharePoint",
     popupTitle: "Enterprise Documents",
     popupBody:
-      "AI-powered document processing that extracts, classifies, and routes your business files automatically.",
+      "AI scans SharePoint uploads — extracts text, tags metadata, and routes documents to the right team or approval chain. Filing that used to take hours happens in seconds.",
     accentColor: "#0078D4",
     serviceLink: "/services/ai-document-processing",
   },
