@@ -145,7 +145,10 @@ export function OrbitalHero() {
 
   useEffect(() => {
     const updateRadius = () => {
-      setOrbitRadius(window.innerWidth >= 1024 ? DESKTOP_RADIUS : TABLET_RADIUS);
+      const baseRadius = window.innerWidth >= 1024 ? DESKTOP_RADIUS : TABLET_RADIUS;
+      // Clamp radius so the orbit fits within the viewport height (with padding)
+      const maxFromHeight = Math.floor(window.innerHeight * 0.42);
+      setOrbitRadius(Math.min(baseRadius, maxFromHeight));
     };
     updateRadius();
     window.addEventListener("resize", updateRadius);
@@ -358,9 +361,10 @@ export function OrbitalHero() {
           <div
             style={{
               position: "absolute",
-              bottom: "15%",
+              bottom: 0,
               left: 0,
               right: 0,
+              paddingBottom: "env(safe-area-inset-bottom, 16px)",
               zIndex: 5,
             }}
           >

@@ -61,7 +61,7 @@ const content = [
         </div>
 
         {/* Simple horizontal workflow - fits in card */}
-        <div className="flex items-center justify-between gap-1">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-1">
           {/* Step 1 */}
           <div className="flex-1 bg-[#111] border border-[#333] rounded-lg px-2 py-2">
             <div className="text-[9px] text-[#737373] font-light mb-0.5">Receive</div>
@@ -69,7 +69,7 @@ const content = [
           </div>
 
           {/* Arrow */}
-          <svg className="flex-shrink-0" width="16" height="10" viewBox="0 0 16 10" fill="none">
+          <svg className="hidden sm:inline-block flex-shrink-0" width="16" height="10" viewBox="0 0 16 10" fill="none">
             <path d="M0 5H14M14 5L10 1M14 5L10 9" stroke="#525252" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
 
@@ -80,7 +80,7 @@ const content = [
           </div>
 
           {/* Arrow */}
-          <svg className="flex-shrink-0" width="16" height="10" viewBox="0 0 16 10" fill="none">
+          <svg className="hidden sm:inline-block flex-shrink-0" width="16" height="10" viewBox="0 0 16 10" fill="none">
             <path d="M0 5H14M14 5L10 1M14 5L10 9" stroke="#fca311" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
 
@@ -91,7 +91,7 @@ const content = [
           </div>
 
           {/* Arrow */}
-          <svg className="flex-shrink-0" width="16" height="10" viewBox="0 0 16 10" fill="none">
+          <svg className="hidden sm:inline-block flex-shrink-0" width="16" height="10" viewBox="0 0 16 10" fill="none">
             <path d="M0 5H14M14 5L10 1M14 5L10 9" stroke="#525252" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
 
@@ -117,7 +117,7 @@ const content = [
         <div className="space-y-4">
           {/* WhatsApp to Make.com */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#111] border border-[#333]">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#111] border border-[#333] flex-shrink-0">
               <MessageSquare className="w-5 h-5 text-[#a3a3a3]" />
             </div>
             <div className="flex-1">
@@ -131,7 +131,7 @@ const content = [
 
           {/* Sheets Integration */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#111] border border-[#333]">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#111] border border-[#333] flex-shrink-0">
               <Sheet className="w-5 h-5 text-[#a3a3a3]" />
             </div>
             <div className="flex-1">
@@ -145,7 +145,7 @@ const content = [
 
           {/* Email Notifications */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#111] border border-[#333]">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#111] border border-[#333] flex-shrink-0">
               <svg className="w-5 h-5 text-[#a3a3a3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
@@ -174,7 +174,7 @@ const content = [
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid grid-cols-3 gap-3 mb-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
           <div className="bg-[#111] border border-[#262626] rounded-lg p-3">
             <div className="text-xs text-[#737373] font-light mb-1">Messages</div>
             <div className="text-lg font-bold text-white">1,247</div>
@@ -206,7 +206,7 @@ export function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-20 px-6 md:py-32"
+      className="py-16 px-4 sm:px-6 md:py-28 lg:py-32"
       style={{ backgroundColor: "#fafafa", borderTop: "1px solid #e5e5e5" }}
     >
       <div className="max-w-7xl mx-auto">

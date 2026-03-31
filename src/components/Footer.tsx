@@ -121,7 +121,7 @@ export function Footer() {
 
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-8">
         {/* Main grid */}
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-12">
+        <div className="grid grid-cols-2 gap-6 md:gap-10 md:grid-cols-4 lg:grid-cols-12">
           {/* Brand — wide column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-5">
             <Link href="/" className="flex items-center gap-2.5 w-max mb-5">

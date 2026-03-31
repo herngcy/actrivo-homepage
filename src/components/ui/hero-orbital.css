@@ -351,3 +351,32 @@
     height: 40px;
   }
 }
+
+/* ── Mobile Hero Layout ── */
+@media (max-width: 767px) {
+  .orbital-hero-content {
+    place-items: unset;
+    align-items: start;
+    justify-items: center;
+    padding-top: 80px;      /* clears ~64px navbar */
+    padding-bottom: 160px;  /* reserves space for icon strip */
+  }
+
+  .orbital-title {
+    font-size: clamp(28px, 7.5vw, 40px);
+    line-height: 1.05;
+  }
+
+  .orbital-subtitle {
+    font-size: clamp(14px, 3.8vw, 16px);
+    margin-top: 14px;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .orbit-center-glow {
+    width: 260px;
+    height: 260px;
+  }
+}

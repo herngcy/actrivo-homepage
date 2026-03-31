@@ -45,7 +45,7 @@ export const StickyScroll = ({
       },
       {
         // Observe within a band around the center of the viewport
-        rootMargin: "-20% 0px -40% 0px",
+        rootMargin: "-10% 0px -15% 0px",
         threshold: [0, 0.25, 0.5, 0.75, 1],
       }
     );
@@ -67,9 +67,9 @@ export const StickyScroll = ({
 
   return (
     <div className="relative">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 w-full items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 lg:gap-20 w-full items-start">
         {/* LEFT - Sticky header and step indicators */}
-        <div className="sticky top-20 self-start">
+        <div className="md:sticky md:top-20 self-start">
           {/* Header Section */}
           {header && <div className="mb-12">{header}</div>}
 
@@ -124,7 +124,7 @@ export const StickyScroll = ({
                 ref={(el) => { cardRefs.current[index] = el; }}
                 data-index={index}
                 className={cn(
-                  "bg-[#0a0a0a] rounded-2xl p-8 lg:p-12 transition-[opacity,border-color,box-shadow] duration-500 border",
+                  "bg-[#0a0a0a] rounded-2xl p-6 md:p-8 lg:p-12 transition-[opacity,border-color,box-shadow] duration-500 border",
                   isActive
                     ? "opacity-100 border-[#262626] shadow-xl"
                     : "opacity-50 border-[#1a1a1a]"
@@ -140,7 +140,7 @@ export const StickyScroll = ({
 
                 {/* Title */}
                 <h2 className={cn(
-                  "text-2xl lg:text-3xl font-bold font-display mb-4 transition-colors duration-300",
+                  "text-xl md:text-2xl lg:text-3xl font-bold font-display mb-4 transition-colors duration-300",
                   "tracking-[-0.02em]",
                   isActive ? "text-white" : "text-[#a3a3a3]"
                 )}

@@ -210,6 +210,18 @@ export function TrustGrid() {
         .trust-card:hover .trust-card__desc {
           transform: translateY(0);
         }
+        /* Responsive grid rows — only fixed heights on tablet+ */
+        @media (min-width: 768px) {
+          .trust-grid {
+            grid-template-rows: 200px 200px 240px;
+          }
+        }
+        /* Mobile: cards need explicit min-height since content is absolutely positioned */
+        @media (max-width: 767px) {
+          .trust-card {
+            min-height: 180px;
+          }
+        }
       `}</style>
       <TrustGridSection />
     </>
@@ -259,7 +271,7 @@ function TrustGridSection() {
           </h2>
         </motion.div>
 
-        <div ref={gridRef} className="grid md:grid-cols-5 gap-4" style={{ gridTemplateRows: "200px 200px 240px" }}>
+        <div ref={gridRef} className="trust-grid grid md:grid-cols-5 gap-4">
           {cards.map((card, idx) => (
             <TrustCard key={idx} card={card} idx={idx} scrollProgress={gridProgress} />
           ))}
