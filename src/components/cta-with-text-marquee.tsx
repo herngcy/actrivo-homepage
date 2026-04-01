@@ -18,12 +18,12 @@ export default function CTAWithVerticalMarquee() {
         priority={false}
       />
 
-      {/* Light gradient — just enough for bottom text legibility */}
+      {/* Gradient overlay for text legibility */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 35%, transparent 60%)",
+            "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.15) 70%, transparent 100%)",
         }}
       />
 
@@ -66,7 +66,7 @@ export default function CTAWithVerticalMarquee() {
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 50, damping: 16, delay: 0.1 }}
           className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-light tracking-[-0.02em] max-w-2xl mb-10"
-          style={{ color: "#ffffff", lineHeight: "1.2" }}
+          style={{ color: "#ffffff", lineHeight: "1.2", textShadow: "0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.4)" }}
         >
           Turning manual chaos into{" "}
           <span className="italic font-normal" style={{ color: "rgba(255,255,255,0.9)" }}>

@@ -13,13 +13,39 @@ const navLinks = [
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    // Start with navbar visible — sticky bar offset = 64px
+    document.documentElement.style.setProperty("--nav-offset", "64px");
+
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+
+      // Only auto-hide on mobile (< 768px)
+      if (window.innerWidth < 768) {
+        if (y > lastScrollY.current && y > 80) {
+          setHidden(true);
+          document.documentElement.style.setProperty("--nav-offset", "0px");
+          window.dispatchEvent(new CustomEvent("navbar-visibility", { detail: { visible: false } }));
+        } else {
+          setHidden(false);
+          document.documentElement.style.setProperty("--nav-offset", "64px");
+          window.dispatchEvent(new CustomEvent("navbar-visibility", { detail: { visible: true } }));
+        }
+      }
+      lastScrollY.current = y;
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.documentElement.style.removeProperty("--nav-offset");
+    };
   }, []);
 
   useEffect(() => {
@@ -40,7 +66,8 @@ export function Navbar() {
         WebkitBackdropFilter: "blur(12px)",
         backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.85)",
         borderBottom: scrolled ? "1px solid #e5e7eb" : "1px solid transparent",
-        transition: "background-color 300ms, border-color 300ms",
+        transform: hidden ? "translateY(-100%)" : "translateY(0)",
+        transition: "background-color 300ms, border-color 300ms, transform 300ms ease",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -108,11 +135,12 @@ export function Navbar() {
             {menuOpen && (
               <div
                 role="menu"
-                className="absolute right-0 top-[calc(100%+8px)] w-52 rounded-xl overflow-hidden"
+                className="fixed right-4 w-56 rounded-2xl overflow-hidden"
                 style={{
-                  backgroundColor: "#ffffff",
-                  border: "1px solid #e5e7eb",
-                  boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)",
+                  top: "30vh",
+                  backgroundColor: "#111111",
+                  border: "1px solid #2a2a2a",
+                  boxShadow: "0 24px 60px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)",
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Escape") setMenuOpen(false);
@@ -124,21 +152,49 @@ export function Navbar() {
                     href={link.href}
                     role="menuitem"
                     onClick={() => setMenuOpen(false)}
-                    className="block px-5 py-3 text-sm font-medium hover:bg-black/5 focus-visible:outline-none"
-                    style={{ color: "#4b5563", transition: "background-color 150ms" }}
+                    className="group flex items-center gap-3 px-5 py-4 text-base font-semibold focus-visible:outline-none focus-visible:bg-white/5"
+                    style={{
+                      color: "#a3a3a3",
+                      borderLeft: "3px solid transparent",
+                      transition: "color 150ms, background-color 150ms, border-color 150ms",
+                    }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.color = "#ffffff";
+                      el.style.backgroundColor = "rgba(255,255,255,0.06)";
+                      el.style.borderLeftColor = "#f59e0b";
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.color = "#a3a3a3";
+                      el.style.backgroundColor = "transparent";
+                      el.style.borderLeftColor = "transparent";
+                    }}
                   >
                     {link.label}
                   </a>
                 ))}
-                <div className="border-t border-[#e5e7eb] mx-3" />
+                <div className="border-t border-[#2a2a2a] mx-4 my-1" />
                 <a
                   href="/contact"
                   role="menuitem"
                   onClick={() => setMenuOpen(false)}
-                  className="block px-5 py-3 text-sm font-bold focus-visible:outline-none"
-                  style={{ color: "#f59e0b", transition: "background-color 150ms" }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "rgba(245,158,11,0.06)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = "transparent")}
+                  className="flex items-center gap-2 px-5 py-4 text-base font-bold focus-visible:outline-none"
+                  style={{
+                    color: "#f59e0b",
+                    borderLeft: "3px solid transparent",
+                    transition: "color 150ms, background-color 150ms, border-color 150ms",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.backgroundColor = "rgba(245,158,11,0.1)";
+                    el.style.borderLeftColor = "#f59e0b";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.backgroundColor = "transparent";
+                    el.style.borderLeftColor = "transparent";
+                  }}
                 >
                   Book a Call →
                 </a>

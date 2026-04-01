@@ -138,3 +138,17 @@ Brand assets, design references, and planning docs are in `_reference/` (gitigno
 - Do not add sections, features, or content not requested.
 - Check `public/` for existing assets before using placeholders.
 - Do not use default Tailwind blue/indigo as primary color.
+
+## Prior Work & Memory
+
+**Before reading source files, check the memory index first.** Prior session changes are documented there and should not be re-investigated from scratch.
+
+Memory index: `C:\Users\herng\.claude\projects\c--actrivo-homepage\memory\MEMORY.md`
+
+Key components with known history (read memory before touching these):
+- `src/components/ui/hero-orbital.tsx` + `hero-orbital.css` — orbital hero with desktop vignette, mobile ring, viewport-height radius clamp
+- `src/components/ui/sticky-scroll-reveal.tsx` — split mobile/desktop layouts; mobile has sticky step bar
+- `src/components/HowItWorks.tsx` — uses StickyScroll with 4 steps
+- `.claude/settings.local.json` — pnpm PATH configured via hardcoded corepack shims entry
+
+**Shell / pnpm**: pnpm is available via Corepack. PATH is configured in `.claude/settings.local.json`. Always check `netstat -ano | grep -E ":300[0-9]"` before starting a new dev server.

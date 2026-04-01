@@ -20,9 +20,9 @@ import "./hero-orbital.css";
 
 /* ── Constants ── */
 const ICON_COUNT = ORBITAL_ICONS.length;
-const ROTATION_SPEED = 0.08; // degrees per frame at 60fps (~75s per revolution)
-const DESKTOP_RADIUS = 380;
-const TABLET_RADIUS = 300;
+const ROTATION_SPEED = 0.05; // degrees per frame at 60fps (~120s per revolution)
+const DESKTOP_RADIUS = 430;
+const TABLET_RADIUS = 350;
 const ANGLE_OFFSET_START = -90; // start from top
 
 /* ── Helpers ── */
@@ -31,13 +31,13 @@ function degToRad(deg: number) {
   return (deg * Math.PI) / 180;
 }
 
-function getIconTransform(index: number, rotationAngle: number, radius: number) {
+function getIconTransform(index: number, rotationAngle: number, radiusX: number, radiusY: number) {
   const angleOffset = (index / ICON_COUNT) * 360 + ANGLE_OFFSET_START;
   const currentAngle = angleOffset + rotationAngle;
   const rad = degToRad(currentAngle);
 
-  const x = radius * Math.cos(rad);
-  const y = radius * Math.sin(rad);
+  const x = radiusX * Math.cos(rad);
+  const y = radiusY * Math.sin(rad);
 
   // Depth: sin gives us -1 (top/back) to 1 (bottom/front)
   // We want top to be dim, bottom to be bright
@@ -100,7 +100,8 @@ export function OrbitalHero() {
 
   // Orbital animation loop
   useEffect(() => {
-    if (isMobile || reducedMotion) return;
+    if (reducedMotion) return;
+    if (isMobile) return; // static positions on mobile — stops per-frame re-renders
 
     const SNAP_DURATION = 600;
 
@@ -140,49 +141,56 @@ export function OrbitalHero() {
     return () => cancelAnimationFrame(rafIdRef.current);
   }, [isMobile, reducedMotion]);
 
-  // Get orbit radius based on viewport (use state to avoid SSR mismatch)
-  const [orbitRadius, setOrbitRadius] = useState(DESKTOP_RADIUS);
+  // Elliptical orbit radii — X is only width-constrained (never shrinks below text content
+  // width), Y is height-constrained so icons never clip off the top/bottom viewport edge.
+  const [orbitRadiusX, setOrbitRadiusX] = useState(DESKTOP_RADIUS);
+  const [orbitRadiusY, setOrbitRadiusY] = useState(DESKTOP_RADIUS);
 
   useEffect(() => {
     const updateRadius = () => {
       const baseRadius = window.innerWidth >= 1024 ? DESKTOP_RADIUS : TABLET_RADIUS;
-      // Clamp radius so the orbit fits within the viewport height (with padding)
-      const maxFromHeight = Math.floor(window.innerHeight * 0.42);
-      setOrbitRadius(Math.min(baseRadius, maxFromHeight));
+      const iconClearance = 56; // icon size (48–72px) + a little breathing room
+      const maxFromHeight = Math.floor(window.innerHeight / 2) - 32 - iconClearance;
+      const maxFromWidth  = Math.floor(window.innerWidth  / 2) - iconClearance;
+      // X: only width-constrained — keeps the horizontal orbit large enough to clear the
+      //    centered text block regardless of viewport height.
+      // Y: height-constrained — keeps icons inside the visible viewport vertically.
+      setOrbitRadiusX(Math.min(baseRadius, maxFromWidth));
+      setOrbitRadiusY(Math.min(baseRadius, maxFromHeight));
     };
     updateRadius();
     window.addEventListener("resize", updateRadius);
     return () => window.removeEventListener("resize", updateRadius);
   }, []);
 
-  // Handle icon click — snap clicked icon to top of orbit
+  // Handle icon click — snap clicked icon to top of orbit (desktop only)
   const handleIconClick = useCallback(
     (icon: OrbitalIcon, index: number) => {
       if (activeIconId === icon.id) {
-        // Deselect — resume free rotation
         setActiveIconId(null);
-        isLockedRef.current = false;
-        lastTimeRef.current = 0;
+        if (!isMobile) {
+          isLockedRef.current = false;
+          lastTimeRef.current = 0;
+        }
       } else {
-        // Select — snap this icon to top position
         setActiveIconId(icon.id);
-
-        // Calculate rotation angle that places this icon at the top (-90°)
-        const rawTarget = -(index / ICON_COUNT) * 360;
-        const current = angleRef.current;
-        const currentNorm = ((current % 360) + 360) % 360;
-        const targetNorm = ((rawTarget % 360) + 360) % 360;
-        let diff = targetNorm - currentNorm;
-        if (diff > 180) diff -= 360;
-        if (diff < -180) diff += 360;
-
-        targetAngleRef.current = current + diff;
-        animStartAngleRef.current = current;
-        animStartTimeRef.current = performance.now();
-        isLockedRef.current = false;
+        if (!isMobile) {
+          // Snap this icon to top position on the orbit
+          const rawTarget = -(index / ICON_COUNT) * 360;
+          const current = angleRef.current;
+          const currentNorm = ((current % 360) + 360) % 360;
+          const targetNorm = ((rawTarget % 360) + 360) % 360;
+          let diff = targetNorm - currentNorm;
+          if (diff > 180) diff -= 360;
+          if (diff < -180) diff += 360;
+          targetAngleRef.current = current + diff;
+          animStartAngleRef.current = current;
+          animStartTimeRef.current = performance.now();
+          isLockedRef.current = false;
+        }
       }
     },
-    [activeIconId]
+    [activeIconId, isMobile]
   );
 
   // Handle click-away
@@ -201,9 +209,9 @@ export function OrbitalHero() {
   const iconTransforms = useMemo(
     () =>
       ORBITAL_ICONS.map((_, i) =>
-        getIconTransform(i, reducedMotion ? 0 : rotationAngle, orbitRadius)
+        getIconTransform(i, reducedMotion ? 0 : rotationAngle, orbitRadiusX, orbitRadiusY)
       ),
-    [rotationAngle, orbitRadius, reducedMotion]
+    [rotationAngle, orbitRadiusX, orbitRadiusY, reducedMotion]
   );
 
 
@@ -214,31 +222,48 @@ export function OrbitalHero() {
       style={{ opacity: heroOpacity, y: heroY }}
     >
 
-      {/* Click-Away Overlay (only when popup is open) */}
+      {/* Click-Away Overlay (only when popup is open, desktop) */}
       {activeIconId && !isMobile && (
         <div className="orbital-overlay" onClick={handleClickAway} />
       )}
 
-      {/* Desktop Orbital System */}
-      {!isMobile && (
-        <div
-          className="orbit-container"
-          style={{
-            width: orbitRadius * 2 + 100,
-            height: orbitRadius * 2 + 100,
-            zIndex: activeIconId ? 25 : 5,
-          }}
-        >
+      {/* Mobile Floating Icons — pure CSS animation, no JS loop */}
+      {isMobile && mounted && (
+        <div className="mobile-float-layout">
+          {ORBITAL_ICONS.map((icon, i) => (
+            <button
+              key={icon.id}
+              className={`mobile-float-icon mobile-float-icon--${i}`}
+              onClick={() => handleIconClick(icon, i)}
+              aria-label={`Learn about ${icon.label} automation`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={icon.src} alt={icon.label} />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Orbital System — desktop/tablet only */}
+      {!isMobile && <div
+        className="orbit-container"
+        style={{
+          width: orbitRadiusX * 2 + 100,
+          height: orbitRadiusY * 2 + 100,
+          zIndex: activeIconId ? 25 : 5,
+        }}
+      >
           {/* Orbit Ring */}
           <svg
-            width={orbitRadius * 2 + 100}
-            height={orbitRadius * 2 + 100}
+            width={orbitRadiusX * 2 + 100}
+            height={orbitRadiusY * 2 + 100}
             style={{ position: "absolute", top: 0, left: 0 }}
           >
-            <circle
-              cx={orbitRadius + 50}
-              cy={orbitRadius + 50}
-              r={orbitRadius}
+            <ellipse
+              cx={orbitRadiusX + 50}
+              cy={orbitRadiusY + 50}
+              rx={orbitRadiusX}
+              ry={orbitRadiusY}
               fill="none"
               stroke="rgba(255, 255, 255, 0.12)"
               strokeWidth={1}
@@ -256,10 +281,10 @@ export function OrbitalHero() {
               return (
                 <line
                   key={`line-${i}`}
-                  x1={t1.x + orbitRadius + 50}
-                  y1={t1.y + orbitRadius + 50}
-                  x2={t2.x + orbitRadius + 50}
-                  y2={t2.y + orbitRadius + 50}
+                  x1={t1.x + orbitRadiusX + 50}
+                  y1={t1.y + orbitRadiusY + 50}
+                  x2={t2.x + orbitRadiusX + 50}
+                  y2={t2.y + orbitRadiusY + 50}
                   stroke="rgba(252, 163, 17, 0.2)"
                   strokeWidth={1}
                   strokeDasharray="4 8"
@@ -275,8 +300,9 @@ export function OrbitalHero() {
             const t = iconTransforms[i];
             const isActive = activeIconId === icon.id;
             const hasActiveIcon = activeIconId !== null;
-            const co = orbitRadius + 50;
-            const halfSize = orbitRadius === DESKTOP_RADIUS ? 40 : 36;
+            const coX = orbitRadiusX + 50;
+            const coY = orbitRadiusY + 50;
+            const halfSize = orbitRadiusX >= DESKTOP_RADIUS ? 40 : 36;
 
             // When active: highlight at orbital position (now snapped to top)
             const finalOpacity = isActive ? 1 : hasActiveIcon ? 0.2 : t.opacity;
@@ -288,8 +314,8 @@ export function OrbitalHero() {
                 key={icon.id}
                 style={{
                   position: "absolute",
-                  left: co + t.x - halfSize,
-                  top: co + t.y - halfSize,
+                  left: coX + t.x - halfSize,
+                  top: coY + t.y - halfSize,
                   opacity: finalOpacity,
                   zIndex: isActive ? 200 : t.zIndex,
                   transform: transformStr,
@@ -320,10 +346,9 @@ export function OrbitalHero() {
             );
           })}
 
-        </div>
-      )}
+        </div>}
 
-      {/* Desktop Centered Popup */}
+      {/* Centered Popup — desktop/tablet */}
       {!isMobile && (
         <AnimatePresence mode="wait">
           {activeIcon && (
@@ -355,79 +380,48 @@ export function OrbitalHero() {
         </AnimatePresence>
       )}
 
-      {/* Mobile Layout */}
+      {/* Bottom Sheet — mobile only (tap icon to open) */}
       {isMobile && mounted && (
-        <>
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              paddingBottom: "env(safe-area-inset-bottom, 16px)",
-              zIndex: 5,
-            }}
-          >
-            <div className="mobile-icon-strip">
-              {ORBITAL_ICONS.map((icon, i) => (
-                <button
-                  key={icon.id}
-                  className={`mobile-icon-btn ${activeIconId === icon.id ? "active" : ""}`}
-                  onClick={() => handleIconClick(icon, i)}
-                  aria-label={`Learn about ${icon.label} automation`}
+        <AnimatePresence>
+          {activeIcon && (
+            <>
+              <motion.div
+                className="mobile-sheet-overlay"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={handleClickAway}
+              />
+              <motion.div
+                className="mobile-bottom-sheet"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{
+                  type: "spring",
+                  damping: 30,
+                  stiffness: 300,
+                }}
+              >
+                <div className="mobile-sheet-handle" />
+                <div className="orbital-popup-header">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={activeIcon.src} alt="" />
+                  <span className="orbital-popup-title font-display">
+                    {activeIcon.popupTitle}
+                  </span>
+                </div>
+                <p className="orbital-popup-body">{activeIcon.popupBody}</p>
+                <a
+                  href={activeIcon.serviceLink}
+                  className="orbital-popup-link"
                 >
-                  <div className="mobile-icon-card">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={icon.src} alt={icon.label} />
-                  </div>
-                  <span className="mobile-icon-label">{icon.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile Bottom Sheet */}
-          <AnimatePresence>
-            {activeIcon && (
-              <>
-                <motion.div
-                  className="mobile-sheet-overlay"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onClick={handleClickAway}
-                />
-                <motion.div
-                  className="mobile-bottom-sheet"
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
-                  exit={{ y: "100%" }}
-                  transition={{
-                    type: "spring",
-                    damping: 30,
-                    stiffness: 300,
-                  }}
-                >
-                  <div className="mobile-sheet-handle" />
-                  <div className="orbital-popup-header">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={activeIcon.src} alt="" />
-                    <span className="orbital-popup-title font-display">
-                      {activeIcon.popupTitle}
-                    </span>
-                  </div>
-                  <p className="orbital-popup-body">{activeIcon.popupBody}</p>
-                  <a
-                    href={activeIcon.serviceLink}
-                    className="orbital-popup-link"
-                  >
-                    Learn more &rarr;
-                  </a>
-                </motion.div>
-              </>
-            )}
-          </AnimatePresence>
-        </>
+                  Learn more &rarr;
+                </a>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       )}
 
       {/* Center Glow */}

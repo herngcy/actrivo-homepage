@@ -210,6 +210,22 @@ export function HowItWorks() {
       style={{ backgroundColor: "#fafafa", borderTop: "1px solid #e5e5e5" }}
     >
       <div className="max-w-7xl mx-auto">
+        {/* Mobile-only heading — rendered outside StickyScroll so it never pushes the sticky bar */}
+        <div className="md:hidden mb-8">
+          <span
+            className="text-xs uppercase tracking-[0.2em] mb-4 block"
+            style={{ color: "#737373" }}
+          >
+            Our Process
+          </span>
+          <h2
+            className="font-display text-4xl font-extrabold tracking-[-0.02em]"
+            style={{ color: "#0a0a0a", lineHeight: "1.1" }}
+          >
+            How Actrivo Works
+          </h2>
+        </div>
+
         <StickyScroll
           content={content}
           contentClassName="bg-[#0a0a0a] border border-[#262626]"

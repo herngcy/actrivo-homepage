@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -312,12 +313,11 @@ function ServiceCard({
   return (
     <Link
       href={href}
-      className="group relative flex-shrink-0 block rounded-2xl overflow-hidden"
+      className="group relative flex-shrink-0 block rounded-2xl overflow-hidden w-full md:w-[320px]"
       style={{
-        width: 320,
         height: 400,
-        marginLeft: 12,
-        marginRight: 12,
+        marginLeft: 0,
+        marginRight: 0,
       }}
     >
       {/* Background gradient */}
@@ -414,6 +414,9 @@ function ServiceCard({
 
 export function BentoFeatures() {
   const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "start 0.5"],
@@ -421,6 +424,20 @@ export function BentoFeatures() {
 
   const headingY = useTransform(scrollYProgress, [0, 1], [40, 0]);
   const headingOpacity = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
+
+  const goTo = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[index] as HTMLElement;
+    if (!card) return;
+    // Scroll so card center aligns with track center
+    const scrollLeft = card.offsetLeft + card.offsetWidth / 2 - track.clientWidth / 2;
+    track.scrollTo({ left: scrollLeft, behavior: "smooth" });
+    setActiveIndex(index);
+  };
+
+  const prev = () => goTo(Math.max(0, activeIndex - 1));
+  const next = () => goTo(Math.min(services.length - 1, activeIndex + 1));
 
   return (
     <section
@@ -449,8 +466,88 @@ export function BentoFeatures() {
         </SplitText>
       </motion.div>
 
-      {/* Card Marquee */}
+      {/* Mobile carousel */}
+      <div className="md:hidden">
+        {/* Card track — scroll-snap for smooth native scrolling */}
+        <div
+          ref={trackRef}
+          className="flex overflow-x-auto scrollbar-hide"
+          style={{
+            gap: 24,
+            paddingLeft: 24,
+            paddingRight: 24,
+            scrollSnapType: "x mandatory",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
+          {services.map((service) => (
+            <div
+              key={service.href}
+              className="flex-shrink-0"
+              style={{
+                width: "calc(100vw - 48px)",
+                scrollSnapAlign: "center",
+              }}
+            >
+              <ServiceCard {...service} />
+            </div>
+          ))}
+        </div>
+
+        {/* Progress bar + nav buttons */}
+        <div className="flex items-center justify-between px-6 mt-6">
+          {/* Progress bar */}
+          <div
+            className="flex-1 mr-6 h-[2px] rounded-full overflow-hidden"
+            style={{ backgroundColor: "rgba(0,0,0,0.1)" }}
+          >
+            <div
+              className="h-full rounded-full"
+              style={{
+                width: `${((activeIndex + 1) / services.length) * 100}%`,
+                backgroundColor: "#fca311",
+                transition: "width 400ms cubic-bezier(0.4, 0, 0.2, 1)",
+              }}
+            />
+          </div>
+
+          {/* Prev / Next buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={prev}
+              disabled={activeIndex === 0}
+              aria-label="Previous service"
+              className="w-10 h-10 rounded-full flex items-center justify-center border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fca311]"
+              style={{
+                borderColor: activeIndex === 0 ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.25)",
+                color: activeIndex === 0 ? "rgba(0,0,0,0.2)" : "#000000",
+                backgroundColor: "transparent",
+                transition: "border-color 200ms, color 200ms",
+              }}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={next}
+              disabled={activeIndex === services.length - 1}
+              aria-label="Next service"
+              className="w-10 h-10 rounded-full flex items-center justify-center border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fca311]"
+              style={{
+                borderColor: activeIndex === services.length - 1 ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.25)",
+                color: activeIndex === services.length - 1 ? "rgba(0,0,0,0.2)" : "#000000",
+                backgroundColor: "transparent",
+                transition: "border-color 200ms, color 200ms",
+              }}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop marquee */}
       <motion.div
+        className="hidden md:block"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -462,9 +559,10 @@ export function BentoFeatures() {
           fade
           fadeAmount={6}
         >
-          {/* Triple the cards so the marquee has enough content for seamless looping */}
           {[...services, ...services, ...services].map((service, idx) => (
-            <ServiceCard key={`${service.href}-${idx}`} {...service} />
+            <div key={`${service.href}-${idx}`} style={{ marginLeft: 12, marginRight: 12, width: 320, flexShrink: 0 }}>
+              <ServiceCard {...service} />
+            </div>
           ))}
         </Marquee>
       </motion.div>
