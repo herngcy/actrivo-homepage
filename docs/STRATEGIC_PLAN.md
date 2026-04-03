@@ -1,297 +1,378 @@
 # Actrivo Strategic Plan — Q2-Q4 2026
 **Created:** April 2026
+**Updated:** April 2026 (v2 — restructured phases with internal tooling first)
 
 ---
 
-## WHERE YOU ARE TODAY (Honest Assessment)
+## WHERE YOU ARE TODAY
 
 ### What You Have
 - A professional website (live, multi-page, well-designed)
-- 2 real clients with completed/in-progress work:
-  - **Pikzern** — Excel automation
+- 2 real clients with work in progress:
+  - **Pikzern** — Excel automation (data entry)
   - **Ecolife** — Chatbot + Google Sheets automation
 - Technical capability to deliver (Make.com, n8n, AI chatbots)
 - Clear positioning: AI automation for Malaysian SMEs
 
 ### What's Missing
+- Pikzern and Ecolife work not fully complete / case-study-ready
 - No pricing set (RM X,XXX placeholders on website)
-- No case studies on website (only internal pilot projects shown)
-- No social media presence (placeholder links)
-- No recurring revenue — project-based only
-- No SEO/content (competitors like The Crunch have 50+ articles)
-- No clear niche/vertical focus
-- No lead generation system besides the contact form
-- Using actrivo@gmail.com (not a professional domain email)
+- No internal tools to run Actrivo efficiently
+- No case studies, social presence, or content engine
+- No recurring revenue
 
-### The Core Problem
-You have a great website and real skills, but you're in the **"cold start" phase** — no social proof, no inbound leads, no content flywheel. Everything needs to be done, which is why it feels overwhelming.
+### The Core Insight
+**You can't sell efficiency if you're not efficient yourself.** Build your own internal agents first → prove they work → use them as case studies → then scale outward.
 
 ---
 
-## THE PLAN: 4 PHASES
-
-The key insight: **don't try to do everything at once.** Each phase builds on the previous one. Only move to the next phase when the current one is solid.
+## THE PLAN: 5 PHASES
 
 ---
 
-## PHASE 1: LOCK THE FOUNDATIONS (Weeks 1-3)
-*Goal: Get the basics right so you're ready when opportunities come*
+## PHASE 1: COMPLETE CLIENT WORK + LOCK FOUNDATIONS (Weeks 1-3)
+*Goal: Finish what you started, set the basics so nothing is half-done*
 
-### 1.1 Set Your Pricing (Day 1-2)
-This is blocking everything. You can't sell if you don't have a price.
+### 1.1 Complete Pikzern & Ecolife Deliverables (Week 1-2)
+These are your first 2 clients. Delivering excellent results here is non-negotiable — everything else depends on it.
 
-**Recommended pricing based on market research:**
+- **Pikzern:** Finalize Excel automation, test edge cases, document the workflow, hand over
+- **Ecolife:** Finalize chatbot + Google Sheets automation, test, document, hand over
+- For each: collect measurable results (hours saved, error rate, speed improvement)
+- Ask for a testimonial quote (even 1 sentence)
 
-| Tier | Price | Rationale |
-|------|-------|-----------|
-| **Starter** | From RM 3,500 | 1 workflow, 3 integrations. Aligns with SME Digitalisation Grant (RM5K at 50% = RM2,500 govt subsidy). Accessible for micro-SMEs. |
-| **Growth** | From RM 7,500 | Up to 3 workflows. Sweet spot — competitors charge RM3K-8K/month as retainers, so a one-time RM7.5K is a no-brainer comparison. |
-| **Custom** | From RM 15,000+ | Full system. Positions you below enterprise competitors ($15K-60K USD range). |
+### 1.2 Set Your Pricing (Day 1-2)
 
-**Why this pricing works:**
-- Starter at RM3,500 is below the psychological RM5K barrier for SMEs
-- Growth at RM7,500 one-time vs competitors charging RM5K-20K *per month* is a powerful sales argument
-- You can always adjust later — but you need numbers on the page NOW
-- Add optional monthly maintenance retainer: **RM 500-1,500/month** (this is how you build recurring revenue later)
+| Tier | Price | Scope |
+|------|-------|-------|
+| **Starter** | From RM 3,500 | 1 workflow, 3 integrations |
+| **Growth** | From RM 7,500 | Up to 3 workflows, 6 integrations |
+| **Custom** | From RM 15,000+ | Unlimited workflows |
+| **Retainer** | RM 500-2,000/month | Optional monitoring + optimization |
 
-### 1.2 Turn Pikzern & Ecolife Into Case Studies (Day 3-5)
-You have 2 real clients. This is gold. Most competitors show zero real case studies.
+Update the RM X,XXX placeholders on the pricing page.
 
-**For each client, document:**
-- What was the problem? (manual hours, errors, cost)
-- What did you build? (tools used, workflow description)
-- What was the result? (hours saved, error reduction, speed improvement)
-- Client quote (even 1 sentence is enough — ask them)
+### 1.3 Basic Business Presence (Week 1)
+- [ ] Professional email (hello@actrivo.com)
+- [ ] WhatsApp Business account for Actrivo
+- [ ] LinkedIn company page
+- [ ] Facebook business page
+- [ ] Update placeholder social links on website
 
-**Then:**
-- Replace the 2 internal pilot projects on /work with these real case studies
-- Use real numbers: "Saved X hours/week" or "Reduced processing from X minutes to Y seconds"
-
-### 1.3 Professional Email (Day 1)
-- Set up hello@actrivo.com or contact@actrivo.com
-- Use your domain — actrivo@gmail.com undermines credibility with business clients
-- Forward to Gmail if you want, but the outward-facing email must be professional
-
-### 1.4 WhatsApp Business Setup (Day 1-2)
-- Create a dedicated WhatsApp Business account for Actrivo
-- Update the placeholder wa.me/ link on the website
-- This is your #1 communication channel with Malaysian SMEs — they WILL WhatsApp you before they fill a form
-
-### 1.5 Basic Social Presence (Day 3-5)
-- Create LinkedIn company page (most important for B2B)
-- Create Facebook business page (secondary)
-- Don't worry about content yet — just have them exist so the links work
-- Update the placeholder social links on the website
+### 1.4 Write Case Studies (Week 2-3)
+Once Pikzern & Ecolife are delivered:
+- Replace internal pilot projects on /work page with real case studies
+- Include: problem → solution → tools used → measurable results → client quote
 
 **Phase 1 Deliverables:**
-- [ ] Pricing filled in on website
+- [ ] Pikzern project fully delivered
+- [ ] Ecolife project fully delivered
+- [ ] 2 testimonials collected
+- [ ] Pricing live on website
+- [ ] Professional email + WhatsApp + socials set up
 - [ ] 2 real case studies on /work page
-- [ ] Professional email set up
-- [ ] WhatsApp Business account live
-- [ ] LinkedIn + Facebook pages created
-- [ ] Social links updated on website
 
 ---
 
-## PHASE 2: GET YOUR NEXT 3-5 CLIENTS (Weeks 4-8)
-*Goal: Build enough social proof to create momentum*
+## PHASE 2: BUILD INTERNAL AGENTS (Weeks 4-8)
+*Goal: Automate Actrivo's own operations — eat your own dog food*
 
-You don't need marketing yet. You need **direct outreach and referrals.** At this stage, every client should come from personal effort, not inbound.
+This is the phase most agencies skip. By building internal tools first, you:
+- **Prove your skills** on real problems (your own)
+- **Create case studies** ("We use the same tools we build for clients")
+- **Increase your capacity** so you can handle more clients without burning out
+- **Demo live tools** during sales calls instead of talking theoretically
 
-### 2.1 Ask Pikzern & Ecolife for Referrals (Week 4)
-- After delivering good results, ask: "Do you know anyone in your network who deals with similar manual work?"
-- Offer them a small incentive (10% off their next project, or a free workflow addition)
+### 2.1 SEO Research & Strategy Agent
+**Problem it solves:** You need to compete with The Crunch (50+ articles) but don't have time to manually research keywords, analyze competitors, and plan content.
+
+**What it does:**
+- Monitors competitor blog content (The Crunch, Flow Digital) for new articles
+- Identifies keyword gaps and opportunities (what they rank for, what they don't)
+- Generates monthly SEO reports: suggested topics, keyword difficulty, search volume
+- Tracks Actrivo's own ranking progress over time
+
+**Tech:** n8n + Google Search Console API + SEMrush/Ahrefs API (or free alternatives) + Claude API for analysis
+
+### 2.2 Content Generator Agent
+**Problem it solves:** You need 2 blog articles/month + 2-3 LinkedIn posts/week but writing takes hours.
+
+**What it does:**
+- Takes a topic/keyword → generates a full blog draft tailored to Malaysian SME audience
+- Includes ringgit amounts, WhatsApp references, local examples automatically
+- Generates LinkedIn post variations from blog content
+- Creates WhatsApp broadcast message versions
+- Maintains brand voice consistency (references Actrivo's tone and positioning)
+
+**Tech:** n8n/Make + Claude API + blog-data.ts integration (auto-populate blog entries)
+
+**Important:** AI-generated content is a starting point — always review and add personal insights before publishing.
+
+### 2.3 Workflow Audit / Identifier Agent
+**Problem it solves:** During free audit calls, you manually map out client processes. This takes time and the output is inconsistent.
+
+**What it does:**
+- Client describes their pain point (text/voice input)
+- AI identifies the manual steps, bottlenecks, and inefficiencies
+- Generates a visual before/after workflow diagram (Mermaid.js or similar)
+- Suggests which Actrivo service package fits
+- Estimates time/cost savings
+- Outputs a professional PDF audit report
+
+**Tech:** n8n + Claude API + Mermaid.js for diagrams + PDF generation
+
+**Dual use:** Internal sales tool NOW → productize as client-facing tool LATER (Phase 5+)
+
+### 2.4 Lead Generation Agent
+**Problem it solves:** Manually searching for potential clients is slow. You need a pipeline of Malaysian SMEs who might need automation.
+
+**What it does:**
+- Scrapes/monitors Malaysian business directories, LinkedIn, Facebook groups for SMEs expressing pain points (manual work, hiring admin staff, complaints about repetitive tasks)
+- Identifies businesses in your target vertical that show automation readiness signals
+- Enriches leads with company info, contact details, estimated size
+- Scores leads by likelihood to need automation
+- Delivers a weekly shortlist of top prospects to your WhatsApp/email
+
+**Tech:** n8n + LinkedIn API / web scraping + Claude API for scoring + WhatsApp notification
+
+### 2.5 Proposal & Invoice Generator
+**Problem it solves:** Writing custom proposals for each client is time-consuming. Invoicing is manual.
+
+**What it does:**
+- Takes audit results → generates a professional proposal with scope, timeline, pricing, and expected ROI
+- Auto-populates from Actrivo's service packages and pricing
+- Generates invoices and tracks payment status
+- Sends automated payment reminders via WhatsApp/email
+
+**Tech:** n8n/Make + Google Docs API (or PDF templates) + Xero/accounting integration + WhatsApp API
+
+### 2.6 Competitor Monitor Agent
+**Problem it solves:** You need to know what competitors are doing but don't have time to check their websites weekly.
+
+**What it does:**
+- Monitors competitor websites (The Crunch, Flow Digital, Brew Interactive, etc.) for changes
+- Alerts you when competitors publish new content, change pricing, or launch new services
+- Monthly summary report: what competitors did, what keywords they targeted, any market shifts
+
+**Tech:** n8n + web scraping/change detection + Claude API for analysis + email/WhatsApp alerts
+
+### Priority Order for Building
+
+| Priority | Agent | Time to Build | Impact |
+|----------|-------|--------------|--------|
+| 1 | **Workflow Audit Agent** | 1-2 weeks | HIGH — immediately useful in sales calls, most impressive to demo |
+| 2 | **Content Generator** | 1 week | HIGH — unblocks your entire content strategy |
+| 3 | **Proposal Generator** | 3-5 days | MEDIUM — saves time per client, looks professional |
+| 4 | **Lead Generation Agent** | 1-2 weeks | HIGH — feeds your client pipeline |
+| 5 | **SEO Research Agent** | 1 week | MEDIUM — informs content strategy |
+| 6 | **Competitor Monitor** | 3-5 days | LOW-MEDIUM — nice to have, not urgent |
+
+**Phase 2 Deliverables:**
+- [ ] Workflow Audit Agent built and tested
+- [ ] Content Generator Agent built and tested
+- [ ] Proposal Generator built and tested
+- [ ] Lead Generation Agent built and tested
+- [ ] SEO Research Agent built and tested
+- [ ] Competitor Monitor Agent built and tested
+- [ ] All agents documented as internal case studies ("we use what we sell")
+
+---
+
+## PHASE 3: GET YOUR NEXT 3-5 CLIENTS (Weeks 9-13)
+*Goal: Use your internal agents to efficiently acquire and deliver for new clients*
+
+Now you have real tools to accelerate client acquisition. This phase should be faster than if you'd tried it without internal agents.
+
+### 3.1 Referrals from Pikzern & Ecolife
+- Ask for referrals with incentive (10% off next project or free workflow addition)
 - Personal referrals convert 3-5x better than cold outreach
 
-### 2.2 Direct Outreach to Your Network (Weeks 4-6)
-- List everyone you know who runs or works at a Malaysian SME
-- Send a personal WhatsApp/LinkedIn message (NOT a sales pitch):
-  - "Hey [name], I've been helping businesses automate their manual work — things like data entry, invoicing, WhatsApp replies. We just saved [Pikzern/Ecolife] X hours a week. Know anyone who might be drowning in repetitive tasks?"
-- Target: reach out to 30-50 people
-- Expected conversion: 2-3 meetings → 1-2 clients
+### 3.2 Outreach Using Lead Generation Agent
+- Your lead gen agent feeds you qualified prospects weekly
+- Send personal WhatsApp/LinkedIn messages to top prospects
+- Use the Workflow Audit Agent during free audit calls to impress
+- Use the Proposal Generator to send professional proposals same-day
 
-### 2.3 Pick ONE Niche to Focus On (Week 4)
-Based on your 2 clients and the market gaps, choose ONE vertical to start with:
+### 3.3 Pick ONE Vertical Niche
 
 | Vertical | Why | Entry Offer |
 |----------|-----|-------------|
-| **E-commerce / Online sellers** | Huge in MY, clear pain points (orders, inventory, shipping) | Order processing + inventory sync automation |
-| **Clinics / Salons** | Recurring appointments, WhatsApp-heavy, hate admin | Booking + WhatsApp reminders + follow-ups |
-| **F&B** | Growing in MY, inventory + supplier pain | POS → inventory → supplier ordering |
-| **Accounting firms / Bookkeepers** | Your Excel automation skill directly applies | Data entry + invoice processing |
-| **Property agents** | The Crunch has case studies here (30-50% more bookings) | Lead capture → auto-qualification → WhatsApp follow-up |
+| **E-commerce / Online sellers** | Huge in MY, clear pain points | Order processing + inventory sync |
+| **Clinics / Salons** | WhatsApp-heavy, hate admin | Booking + reminders + follow-ups |
+| **F&B** | Growing in MY, inventory pain | POS → inventory → supplier ordering |
+| **Accounting firms** | Excel automation skill applies directly | Data entry + invoice processing |
+| **Property agents** | Lead management pain | Lead capture → qualification → follow-up |
 
-**Recommendation: Start with whatever vertical Pikzern or Ecolife belongs to** — you already have a case study and understand the pain points.
+**Recommendation:** Start with whatever vertical Pikzern or Ecolife belongs to.
 
-### 2.4 Offer a "Pilot Project" at Reduced Rate (Weeks 5-8)
-For your first 3-5 clients, offer a deal:
-- "We'll automate your highest-impact manual process for RM 2,000 (normally RM 3,500) — in exchange, we'd love a testimonial and permission to use it as a case study."
-- This builds your case study library FAST
-- Stop discounting after you have 5 case studies
+### 3.4 Pilot Pricing for Case Studies
+- Offer first 3-5 new clients: RM 2,000 (normally RM 3,500) in exchange for testimonial + case study permission
+- Stop discounting after 5 case studies total
 
-### 2.5 Government Grant Angle (Ongoing)
-- Research the **SME Digitalisation Grant** application process
-- Offer to help clients apply: "Your automation could be 50% subsidized by the government"
-- This removes the #1 barrier (cost) and positions you as a knowledgeable partner
-- Nobody else in the market is actively marketing this angle
+### 3.5 Government Grant Angle
+- Research SME Digitalisation Grant application process
+- Market: "Your automation could be 50% subsidized by the government"
+- Align Starter tier with the RM5K grant threshold
 
-**Phase 2 Deliverables:**
+**Phase 3 Deliverables:**
 - [ ] Referrals requested from Pikzern & Ecolife
-- [ ] 30-50 personal outreach messages sent
-- [ ] ONE vertical chosen as initial niche
-- [ ] 3-5 new clients acquired (even at reduced rate)
-- [ ] 3-5 case studies / testimonials collected
+- [ ] Lead Gen Agent producing weekly prospect lists
+- [ ] Workflow Audit Agent used in 5+ audit calls
+- [ ] ONE vertical chosen
+- [ ] 3-5 new clients acquired
+- [ ] 5 total case studies on website
 
 ---
 
-## PHASE 3: BUILD YOUR CONTENT ENGINE (Weeks 9-16)
+## PHASE 4: BUILD YOUR CONTENT ENGINE (Weeks 14-20)
 *Goal: Start generating inbound leads so you're not dependent on outreach*
 
-**Only start this phase after you have 5+ case studies.** Content without proof is just noise.
+**Only start this after you have 5+ case studies.** Content without proof is noise.
 
-### 3.1 SEO Blog Strategy (2 articles/month minimum)
-The Crunch dominates search. You won't outrank them quickly, but you can target gaps they miss.
-
-**Priority keywords (Malaysian SME-focused):**
+### 4.1 SEO Blog Strategy (2 articles/month)
+Use your Content Generator Agent + SEO Research Agent to produce and optimize.
 
 | Priority | Keyword Target | Article Idea |
 |----------|---------------|--------------|
 | 1 | "automate data entry Malaysia SME" | How We Saved [Client] 8 Hours/Week on Data Entry |
 | 2 | "WhatsApp business automation Malaysia" | 5 WhatsApp Automations Every Malaysian SME Needs |
 | 3 | "invoice automation Malaysia" | Stop Chasing Payments: Automated Invoicing for SMEs |
-| 4 | "SME Digitalisation Grant automation" | How to Use the SME Digitalisation Grant for AI Automation |
-| 5 | "n8n automation Malaysia" | Why We Use n8n to Build Automations for Malaysian Businesses |
+| 4 | "SME Digitalisation Grant automation" | How to Use the Government Grant for AI Automation |
+| 5 | "n8n automation Malaysia" | Why We Use n8n for Malaysian Businesses |
 | 6 | "Excel automation Malaysia business" | Still Copy-Pasting from Excel? Here's a Better Way |
-| 7 | "[your chosen vertical] automation Malaysia" | Vertical-specific articles based on your niche |
 
-### 3.2 LinkedIn Content (2-3 posts/week)
-- Share real automation stories from your clients (with permission)
+### 4.2 LinkedIn Content (2-3 posts/week)
+- Content Generator produces drafts → you add personal insights
+- Share real automation stories from clients
 - Before/after screenshots (redacted if needed)
-- Short "I built this automation that saves X hours" posts
 - Malaysian business context — not generic AI hype
-- Engage with Malaysian business community posts
 
-### 3.3 WhatsApp Broadcast List
-- Collect WhatsApp numbers from every lead/prospect/contact
-- Send monthly value-add content: automation tips, case study highlights
-- This is more effective than email in Malaysia (98% open rates)
+### 4.3 WhatsApp Broadcast List
+- Collect contacts from every lead/prospect/audit call
+- Monthly automation tips + case study highlights
+- 98% open rate in Malaysia — more effective than email
 
-### 3.4 Free Audit as Lead Magnet
-Your free 30-min audit is already on the website — now actively promote it:
-- Add a WhatsApp quick-link: "Send 'AUDIT' to [number] to book your free automation audit"
-- Share the offer in every piece of content
-- The audit IS your sales process — don't over-think the funnel
+### 4.4 Promote Free Audit with Workflow Audit Agent
+- "Send 'AUDIT' to [WhatsApp number] to book your free automation audit"
+- Use the Workflow Audit Agent to deliver a premium experience
+- The audit IS your sales process
 
-**Phase 3 Deliverables:**
-- [ ] 4-8 blog articles published
+**Phase 4 Deliverables:**
+- [ ] 4-8 blog articles published (using Content Generator)
 - [ ] LinkedIn posting cadence established (2-3/week)
 - [ ] WhatsApp broadcast list started (50+ contacts)
-- [ ] Inbound leads starting to come in
+- [ ] Inbound leads starting to come in (target: 2-3/month)
 
 ---
 
-## PHASE 4: SCALE & DIFFERENTIATE (Months 5-8)
+## PHASE 5: SCALE & DIFFERENTIATE (Months 6-8)
 *Goal: Move from "getting clients" to "choosing clients"*
 
-Only move here when you're consistently getting 2-3 inbound leads/month.
+### 5.1 Launch Recurring Revenue — "Automation Care Plan"
 
-### 4.1 Add Recurring Revenue
-Your fixed-fee model builds trust, but you need recurring revenue for sustainability.
-
-**Introduce "Automation Care Plan":**
 | Plan | Price | Includes |
 |------|-------|---------|
 | Basic | RM 500/month | Monitoring, bug fixes, email support |
-| Standard | RM 1,000/month | Above + monthly optimization, 1 workflow tweak/month |
-| Premium | RM 2,000/month | Above + quarterly review, priority support, new workflow additions |
+| Standard | RM 1,000/month | + monthly optimization, 1 workflow tweak/month |
+| Premium | RM 2,000/month | + quarterly review, priority support, new additions |
 
-Position it as: "Your automations are running your business — they need maintenance, just like a car."
+Target: 10 clients on RM1K/month = RM10K/month guaranteed income.
 
-Agencies with 60%+ recurring revenue have 2.3x higher profitability. If you have 10 clients on RM1K/month, that's RM10K/month guaranteed income.
-
-### 4.2 Productized Vertical Packages
-Based on your niche experience, create pre-packaged solutions:
+### 5.2 Productized Vertical Packages
 - "The [Vertical] Automation Kit" — fixed scope, fixed price, repeatable delivery
-- Example: "The E-commerce Automation Kit — RM 5,000" includes order processing + inventory sync + shipping notifications + WhatsApp confirmations
-- Productized packages are faster to deliver and higher margin
+- Example: "E-commerce Automation Kit — RM 5,000" (order processing + inventory + shipping + WhatsApp)
 
-### 4.3 Explore New Service Lines (Pick ONE)
-Based on market gaps, add ONE new capability:
+### 5.3 Explore ONE New Service Line
 
-| Option | Investment | Market Readiness | First Mover in MY? |
-|--------|-----------|-----------------|-------------------|
-| **AI Voice Agents** (Vapi/Retell) | Medium (learn new tool) | Growing fast | Yes — nobody offers this |
-| **AI Employee positioning** | Low (rebranding) | Very hot globally | Yes — untapped framing |
-| **Multi-channel automation** (WhatsApp + Email + IG unified) | Medium | High demand | Partially (Respond.io exists) |
+| Option | Investment | First Mover in MY? |
+|--------|-----------|-------------------|
+| **AI Voice Agents** (Vapi/Retell) | Medium | Yes — nobody offers this |
+| **AI Employee positioning** | Low (rebranding) | Yes — untapped framing |
+| **Client-facing Workflow Audit Tool** | Medium | Yes — productize your internal tool |
 
-**Recommendation: AI Voice Agents.** The market is $2.4B → $47.5B by 2034. Nobody in Malaysia offers this. Use case: AI receptionist for clinics/salons that answers calls, books appointments, sends WhatsApp confirmations. Aligns perfectly with your SME focus.
+### 5.4 Partnership Strategy
+- **n8n training providers** (thelead.io, KursusAI) → they train, you implement
+- **Accounting firms** → they see clients drowning in manual work daily
+- **Web developers** → they build websites but can't do automation
 
-### 4.4 Partnership Strategy
-- **n8n training providers** (thelead.io, KursusAI): They train → clients need implementation → refer to you
-- **Accounting firms**: They see clients drowning in manual work daily → refer to you
-- **Web developers / agencies**: They build websites but can't do automation → refer to you
-
-**Phase 4 Deliverables:**
+**Phase 5 Deliverables:**
 - [ ] Recurring revenue model launched
 - [ ] 1 productized vertical package created
 - [ ] 1 new service line explored/piloted
 - [ ] 2-3 referral partnerships established
+- [ ] Monthly recurring revenue: RM 8,000+
 
 ---
 
-## PRIORITY MATRIX: WHAT TO DO FIRST
+## PRIORITY MATRIX
 
 If you're overwhelmed, follow this exact order:
 
-### THIS WEEK (Non-negotiable)
-1. Set your pricing (fill in the RM X,XXX on the website)
-2. Set up professional email (hello@actrivo.com)
-3. Set up WhatsApp Business for Actrivo
-4. Ask Pikzern and Ecolife for testimonials
+### THIS WEEK
+1. Complete Pikzern deliverables
+2. Complete Ecolife deliverables
+3. Set pricing on website
+4. Set up professional email + WhatsApp Business
 
 ### NEXT 2 WEEKS
-5. Write Pikzern case study → add to /work page
-6. Write Ecolife case study → add to /work page
-7. Create LinkedIn company page
-8. Send 20 personal outreach messages
+5. Collect testimonials from Pikzern & Ecolife
+6. Write 2 case studies → update /work page
+7. Create LinkedIn + Facebook pages
+8. Start building Workflow Audit Agent
 
 ### NEXT MONTH
-9. Choose your niche vertical
-10. Get 2-3 more clients (even at pilot pricing)
-11. Write your first blog article (SME Digitalisation Grant angle)
-12. Start posting on LinkedIn (2x/week)
+9. Build Content Generator Agent
+10. Build Lead Generation Agent
+11. Build Proposal Generator
 
-### Everything else can wait.
+### MONTH 2-3
+12. Start outreach using your agents
+13. Get 3-5 new clients
+14. Begin content publishing
+
+### Everything else waits.
+
+---
+
+## INTERNAL AGENTS SUMMARY
+
+| # | Agent | What It Does | Priority |
+|---|-------|-------------|----------|
+| 1 | **Workflow Audit Agent** | Client describes pain → generates visual before/after workflow + savings estimate + PDF report | Build first |
+| 2 | **Content Generator** | Topic → blog draft + LinkedIn posts + WhatsApp broadcast, all in Actrivo's voice | Build second |
+| 3 | **Proposal Generator** | Audit results → professional proposal with scope, timeline, pricing, ROI | Build third |
+| 4 | **Lead Generation Agent** | Monitors directories/LinkedIn/groups → weekly qualified prospect shortlist | Build fourth |
+| 5 | **SEO Research Agent** | Monitors competitors, identifies keyword gaps, suggests topics | Build fifth |
+| 6 | **Competitor Monitor** | Tracks competitor website changes, new content, pricing shifts | Build sixth |
 
 ---
 
 ## METRICS TO TRACK
 
-| Metric | Month 1 Target | Month 3 Target | Month 6 Target |
-|--------|----------------|----------------|----------------|
-| Active clients | 4 | 8 | 15 |
+| Metric | Month 1 | Month 3 | Month 6 |
+|--------|---------|---------|---------|
+| Active clients | 2 (delivered) | 7 | 15 |
 | Case studies on website | 2 | 5 | 8+ |
+| Internal agents built | 2 | 5 | 6 |
 | Monthly recurring revenue | RM 0 | RM 2,000 | RM 8,000 |
 | Blog articles published | 0 | 4 | 10+ |
 | Inbound leads/month | 0 | 2 | 5+ |
 | LinkedIn followers | 50 | 200 | 500 |
-| WhatsApp broadcast list | 20 | 50 | 150+ |
 
 ---
 
 ## WHAT NOT TO SPEND TIME ON RIGHT NOW
 
-- Building a complex marketing funnel
-- Paid ads (Instagram, Facebook, Google) — you need case studies first
-- Creating a proprietary platform or tool
+- Paid ads (need case studies first)
 - Chasing enterprise/government clients
+- Building a proprietary SaaS platform
 - Hiring staff
 - Redesigning the website (it's already good)
-- Creating video content (too time-consuming for current stage)
-- Trying to compete with The Crunch on chatbot SEO content
+- Video content (too time-consuming at this stage)
+- Competing with The Crunch on chatbot SEO volume
 
 ---
 
 ## ONE-LINE SUMMARY
 
-**Your #1 job right now is getting 5 paying clients with documented results. Everything else — content, SEO, partnerships, new services — comes after that foundation exists.**
+**Finish your current clients, build internal agents to prove your skills and boost your efficiency, then use those tools to acquire and serve the next wave of clients.**
