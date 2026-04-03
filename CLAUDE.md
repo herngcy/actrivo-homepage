@@ -6,10 +6,57 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Actrivo is a Malaysian AI automation agency website. Multi-page Next.js app (App Router) targeting Malaysian SMEs with dedicated pages for services, pricing, portfolio, blog, and contact. Deployed on Cloudflare via OpenNext.
 
+## Business Context
+
+Actrivo is an AI automation agency focused on Malaysian SMEs. We help businesses eliminate manual, repetitive work through workflow automation using Make.com and n8n.
+
+### Current Clients
+- **Pikzern** — Excel automation (data entry)
+- **Ecolife** — Chatbot + Google Sheets automation
+
+### Services We Deliver
+1. Data Entry Automation
+2. AI Document Processing
+3. Customer Workflow Automation
+4. Reporting Dashboards
+5. Invoice & Payment Automation
+6. WhatsApp Business Automation
+7. Inventory Management Automation
+8. Email Marketing Automation
+9. Lead Management Automation
+
+### Tech Stack (Delivery)
+- **Automation platforms:** Make.com, n8n (self-hosted)
+- **AI/LLM:** OpenAI API, Claude API
+- **Messaging:** WhatsApp Business API
+- **Integrations:** Excel, Google Sheets, Xero, QuickBooks, Autocount, Shopify, HubSpot, Gmail, Outlook, Google Drive, Notion, Airtable, Slack, Power BI, Looker Studio, SQL databases
+- **Future:** AI Voice Agents (Vapi/Retell), Agentic AI workflows
+
+### Pricing Model
+- **Starter:** From RM 3,500 (1 workflow, 3 integrations)
+- **Growth:** From RM 7,500 (up to 3 workflows, 6 integrations)
+- **Custom:** From RM 15,000+ (unlimited workflows)
+- **Optional retainer:** RM 500-2,000/month (monitoring + optimization)
+
+### Competitive Positioning
+- Only Malaysian AI agency with **transparent fixed-fee pricing** (no retainers required)
+- Back-office automation focus (data entry, invoicing, inventory) — competitors chase chatbots
+- "Built for Malaysia" — understands local tools (Autocount, WhatsApp culture), ringgit pricing
+- Post-launch support included — "we don't just build and leave"
+
+### Key Competitors
+- **The Crunch** (thecrunch.io) — chatbot funnels, GoHighLevel, dominates SEO
+- **Flow Digital** (flowdigital.my) — closest competitor, n8n-based, SME focus
+- **Brew Interactive** — regional digital agency with AI add-on
+- See `docs/COMPETITIVE_ANALYSIS.md` for full breakdown
+
+### Strategic Plan
+See `docs/STRATEGIC_PLAN.md` for the phased growth plan. Current phase: **Phase 1 (Foundations)** — setting pricing, building case studies from Pikzern & Ecolife, establishing basic presence.
+
 ## Repository Structure
 
 ```
-actrivo-deploy/
+actrivo-homepage/
 ├── src/                        # Next.js app source (App Router)
 │   ├── app/
 │   │   ├── layout.tsx          # Root layout — metadata, fonts (Inter + Space Grotesk)
@@ -59,6 +106,9 @@ actrivo-deploy/
 │       ├── blog-data.ts        # Blog post data
 │       └── service-data.ts     # Service page data
 ├── public/                     # Static assets (images, icons, logo)
+├── docs/                       # Strategy & research documents
+│   ├── COMPETITIVE_ANALYSIS.md # Market research — 11 competitors, pricing, gaps
+│   └── STRATEGIC_PLAN.md       # Phased growth plan Q2-Q4 2026
 ├── _reference/                 # Local-only reference materials (gitignored)
 │   ├── brand_assets/           # Actrivo logo
 │   ├── website_reference/      # Design reference images
@@ -117,13 +167,6 @@ pnpm upload                     # Build + upload without deploying
 | Display font | Space Grotesk (`font-display`) |
 | Logo | `public/actrivo-logo.jpeg` |
 
-## Reference Materials
-
-Brand assets, design references, and planning docs are in `_reference/` (gitignored, local only):
-- `_reference/brand_assets/` — Actrivo logo original
-- `_reference/website_reference/` — Design inspiration images
-- `_reference/docs/` — LANDING_PAGE.md, SERVICE_PAGES_CONTENT.md
-
 ## Design Guardrails
 
 - Never use default Tailwind palette (indigo-500, blue-600, etc.) — use brand colors.
@@ -138,17 +181,43 @@ Brand assets, design references, and planning docs are in `_reference/` (gitigno
 - Do not add sections, features, or content not requested.
 - Check `public/` for existing assets before using placeholders.
 - Do not use default Tailwind blue/indigo as primary color.
+- Always read `docs/COMPETITIVE_ANALYSIS.md` and `docs/STRATEGIC_PLAN.md` before making strategic decisions about positioning, pricing, or content.
+
+## Task Guidance
+
+When asked to work on Actrivo, here are common task patterns:
+
+### Website Changes
+- Read the relevant component/page file before editing
+- Follow the brand tokens and design guardrails above
+- Test with `pnpm build` before committing (catches TypeScript/lint errors)
+
+### Writing Blog Articles
+- Blog data lives in `src/lib/blog-data.ts`
+- Blog pages use `src/app/blog/[slug]/page.tsx` template
+- Target Malaysian SME audience — use ringgit amounts, local examples, WhatsApp references
+- Priority SEO keywords: "AI automation Malaysia SME", "WhatsApp automation Malaysia", "n8n Malaysia", "SME Digitalisation Grant automation"
+- See `docs/STRATEGIC_PLAN.md` Section 3.1 for content calendar
+
+### Updating Case Studies / Portfolio
+- Portfolio lives in `src/app/work/page.tsx`
+- Current projects are internal pilots — replace with real client work (Pikzern, Ecolife) when ready
+- Include: problem, solution, tools used, measurable results, client quote
+
+### Updating Pricing
+- Pricing page: `src/app/pricing/page.tsx`
+- Pricing card component: `src/components/PricingCard.tsx`
+- Current values are placeholders (RM X,XXX) — need to be filled with real amounts
+- See `docs/STRATEGIC_PLAN.md` Section 1.1 for recommended pricing
+
+### Creating Service Pages
+- Service data: `src/lib/service-data.ts`
+- Template: `src/components/service/ServicePageTemplate.tsx`
+- Each service has its own route under `src/app/services/[service-name]/`
 
 ## Prior Work & Memory
 
-**Before reading source files, check the memory index first.** Prior session changes are documented there and should not be re-investigated from scratch.
-
-Memory index: `C:\Users\herng\.claude\projects\c--actrivo-homepage\memory\MEMORY.md`
-
-Key components with known history (read memory before touching these):
+Key components with known history:
 - `src/components/ui/hero-orbital.tsx` + `hero-orbital.css` — orbital hero with desktop vignette, mobile ring, viewport-height radius clamp
 - `src/components/ui/sticky-scroll-reveal.tsx` — split mobile/desktop layouts; mobile has sticky step bar
 - `src/components/HowItWorks.tsx` — uses StickyScroll with 4 steps
-- `.claude/settings.local.json` — pnpm PATH configured via hardcoded corepack shims entry
-
-**Shell / pnpm**: pnpm is available via Corepack. PATH is configured in `.claude/settings.local.json`. Always check `netstat -ano | grep -E ":300[0-9]"` before starting a new dev server.
