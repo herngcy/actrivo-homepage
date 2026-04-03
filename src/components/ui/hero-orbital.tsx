@@ -31,19 +31,19 @@ function degToRad(deg: number) {
   return (deg * Math.PI) / 180;
 }
 
-function getIconTransform(index: number, rotationAngle: number, radiusX: number, radiusY: number) {
+function getIconTransform(index: number, rotationAngle: number, radius: number) {
   const angleOffset = (index / ICON_COUNT) * 360 + ANGLE_OFFSET_START;
   const currentAngle = angleOffset + rotationAngle;
   const rad = degToRad(currentAngle);
 
-  const x = radiusX * Math.cos(rad);
-  const y = radiusY * Math.sin(rad);
+  const x = radius * Math.cos(rad);
+  const y = radius * Math.sin(rad);
 
   // Depth: sin gives us -1 (top/back) to 1 (bottom/front)
   // We want top to be dim, bottom to be bright
   const depthFactor = (1 + Math.sin(rad)) / 2; // 0 = back, 1 = front
-  const opacity = 0.35 + 0.65 * depthFactor;
-  const scale = 0.85 + 0.15 * depthFactor;
+  const opacity = 0.75 + 0.25 * depthFactor;
+  const scale = 0.9 + 0.1 * depthFactor;
   const zIndex = Math.round(50 + 50 * depthFactor);
 
   return { x, y, opacity, scale, zIndex, angle: currentAngle };
@@ -141,22 +141,24 @@ export function OrbitalHero() {
     return () => cancelAnimationFrame(rafIdRef.current);
   }, [isMobile, reducedMotion]);
 
-  // Elliptical orbit radii — X is only width-constrained (never shrinks below text content
-  // width), Y is height-constrained so icons never clip off the top/bottom viewport edge.
-  const [orbitRadiusX, setOrbitRadiusX] = useState(DESKTOP_RADIUS);
-  const [orbitRadiusY, setOrbitRadiusY] = useState(DESKTOP_RADIUS);
+  // Viewport-proportional circle: radius = 40% of the smaller usable dimension.
+  // On 1920×1080 → min(768, 400) = 400.  On 1366×768 → min(546, 272) = 272.
+  // Text scales via CSS (clamp with vh) so both shrink together — no overlap possible.
+  const [orbitRadius, setOrbitRadius] = useState(DESKTOP_RADIUS);
+  const [halfNodeSize, setHalfNodeSize] = useState(40);
 
   useEffect(() => {
     const updateRadius = () => {
-      const baseRadius = window.innerWidth >= 1024 ? DESKTOP_RADIUS : TABLET_RADIUS;
-      const iconClearance = 56; // icon size (48–72px) + a little breathing room
-      const maxFromHeight = Math.floor(window.innerHeight / 2) - 32 - iconClearance;
-      const maxFromWidth  = Math.floor(window.innerWidth  / 2) - iconClearance;
-      // X: only width-constrained — keeps the horizontal orbit large enough to clear the
-      //    centered text block regardless of viewport height.
-      // Y: height-constrained — keeps icons inside the visible viewport vertically.
-      setOrbitRadiusX(Math.min(baseRadius, maxFromWidth));
-      setOrbitRadiusY(Math.min(baseRadius, maxFromHeight));
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      // Usable height = viewport minus navbar (64px)
+      const usableH = h - 64;
+      // 40% of the smaller dimension — keeps circle inside viewport with clearance
+      const radius = Math.floor(Math.min(w, usableH) * 0.4);
+      setOrbitRadius(radius);
+      // Match the CSS clamp: clamp(56px, min(5.2vw, 8.4vh), 80px) / 2
+      const nodeSize = Math.min(Math.max(56, Math.min(w * 0.052, h * 0.084)), 80);
+      setHalfNodeSize(Math.round(nodeSize / 2));
     };
     updateRadius();
     window.addEventListener("resize", updateRadius);
@@ -209,9 +211,9 @@ export function OrbitalHero() {
   const iconTransforms = useMemo(
     () =>
       ORBITAL_ICONS.map((_, i) =>
-        getIconTransform(i, reducedMotion ? 0 : rotationAngle, orbitRadiusX, orbitRadiusY)
+        getIconTransform(i, reducedMotion ? 0 : rotationAngle, orbitRadius)
       ),
-    [rotationAngle, orbitRadiusX, orbitRadiusY, reducedMotion]
+    [rotationAngle, orbitRadius, reducedMotion]
   );
 
 
@@ -248,22 +250,21 @@ export function OrbitalHero() {
       {!isMobile && <div
         className="orbit-container"
         style={{
-          width: orbitRadiusX * 2 + 100,
-          height: orbitRadiusY * 2 + 100,
+          width: orbitRadius * 2 + 100,
+          height: orbitRadius * 2 + 100,
           zIndex: activeIconId ? 25 : 5,
         }}
       >
           {/* Orbit Ring */}
           <svg
-            width={orbitRadiusX * 2 + 100}
-            height={orbitRadiusY * 2 + 100}
+            width={orbitRadius * 2 + 100}
+            height={orbitRadius * 2 + 100}
             style={{ position: "absolute", top: 0, left: 0 }}
           >
-            <ellipse
-              cx={orbitRadiusX + 50}
-              cy={orbitRadiusY + 50}
-              rx={orbitRadiusX}
-              ry={orbitRadiusY}
+            <circle
+              cx={orbitRadius + 50}
+              cy={orbitRadius + 50}
+              r={orbitRadius}
               fill="none"
               stroke="rgba(255, 255, 255, 0.12)"
               strokeWidth={1}
@@ -281,10 +282,10 @@ export function OrbitalHero() {
               return (
                 <line
                   key={`line-${i}`}
-                  x1={t1.x + orbitRadiusX + 50}
-                  y1={t1.y + orbitRadiusY + 50}
-                  x2={t2.x + orbitRadiusX + 50}
-                  y2={t2.y + orbitRadiusY + 50}
+                  x1={t1.x + orbitRadius + 50}
+                  y1={t1.y + orbitRadius + 50}
+                  x2={t2.x + orbitRadius + 50}
+                  y2={t2.y + orbitRadius + 50}
                   stroke="rgba(252, 163, 17, 0.2)"
                   strokeWidth={1}
                   strokeDasharray="4 8"
@@ -300,9 +301,7 @@ export function OrbitalHero() {
             const t = iconTransforms[i];
             const isActive = activeIconId === icon.id;
             const hasActiveIcon = activeIconId !== null;
-            const coX = orbitRadiusX + 50;
-            const coY = orbitRadiusY + 50;
-            const halfSize = orbitRadiusX >= DESKTOP_RADIUS ? 40 : 36;
+            const co = orbitRadius + 50;
 
             // When active: highlight at orbital position (now snapped to top)
             const finalOpacity = isActive ? 1 : hasActiveIcon ? 0.2 : t.opacity;
@@ -314,8 +313,8 @@ export function OrbitalHero() {
                 key={icon.id}
                 style={{
                   position: "absolute",
-                  left: coX + t.x - halfSize,
-                  top: coY + t.y - halfSize,
+                  left: co + t.x - halfNodeSize,
+                  top: co + t.y - halfNodeSize,
                   opacity: finalOpacity,
                   zIndex: isActive ? 200 : t.zIndex,
                   transform: transformStr,

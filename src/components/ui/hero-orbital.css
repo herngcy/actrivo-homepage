@@ -42,27 +42,36 @@
   z-index: 10;
 }
 
-/* Radial vignette — keeps text readable when icons orbit behind it */
+/* Radial vignette — keeps text readable; tight core so icons outside remain visible */
 .orbital-hero-content::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 65% at 50% 50%, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.6) 45%, transparent 100%);
+  background: radial-gradient(
+    ellipse 50% 45% at 50% 50%,
+    rgba(10, 10, 10, 0.92) 0%,
+    rgba(10, 10, 10, 0.7) 50%,
+    rgba(10, 10, 10, 0.2) 80%,
+    transparent 100%
+  );
   z-index: -1;
   pointer-events: none;
 }
 
 .orbital-title {
   font-weight: 700;
-  font-size: clamp(32px, 3.6vw, 64px);
+  /* Scale with both vw and vh so the title shrinks together with the orbit circle.
+     min() picks the smaller dimension — same logic the JS radius uses. */
+  font-size: clamp(32px, min(3.6vw, 5.8vh), 64px);
   line-height: 0.95;
   letter-spacing: -0.03em;
   margin: 0;
   color: var(--fg);
 }
 
+
 .orbital-subtitle {
-  font-size: clamp(14px, 1.8vw, 18px);
+  font-size: clamp(14px, min(1.8vw, 2.4vh), 18px);
   line-height: 1.6;
   color: var(--muted);
   margin: 20px 0 0;
@@ -121,10 +130,10 @@
   height: 56px;
   padding: 12px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.3),
     0 1px 4px rgba(0, 0, 0, 0.2);
@@ -342,27 +351,15 @@
 
 @media (min-width: 768px) {
   .orbit-node {
-    width: 72px;
-    height: 72px;
-    padding: 16px;
+    /* Scale icon nodes with viewport so they shrink/grow alongside the orbit circle */
+    width: clamp(56px, min(5.2vw, 8.4vh), 80px);
+    height: clamp(56px, min(5.2vw, 8.4vh), 80px);
+    padding: 14px;
     border-radius: 20px;
   }
   .orbit-node img {
-    width: 36px;
-    height: 36px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .orbit-node {
-    width: 80px;
-    height: 80px;
-    padding: 18px;
-    border-radius: 24px;
-  }
-  .orbit-node img {
-    width: 40px;
-    height: 40px;
+    width: clamp(28px, min(2.6vw, 4.2vh), 40px);
+    height: clamp(28px, min(2.6vw, 4.2vh), 40px);
   }
 }
 
