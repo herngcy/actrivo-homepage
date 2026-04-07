@@ -53,3 +53,7 @@ next-env.d.ts
 
 # Local reference materials (brand assets, design refs, docs)
 _reference/
+
+# Claude Code local files (personal settings, not shared)
+CLAUDE.local.md
+.claude/settings.local.json

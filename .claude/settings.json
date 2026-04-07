@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm build)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm dev)",
+      "Bash(netstat -ano*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git pull*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] File modified — remember to run pnpm build before committing' >&2; exit 0"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Session ending — if corrections were made, update tasks/lessons.md' >&2; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}
